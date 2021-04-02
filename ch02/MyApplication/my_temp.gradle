@@ -1,0 +1,15 @@
+ext {
+    runCheckPropertis = false
+}
+task temp {
+    print "my_name = $my_name"
+}
+
+task checkProperties {
+    if (runCheckPropertis) {
+        //忽略
+        if (!project.hasProperty("no_exit")) {
+            throw new RuntimeException("Without Param!!");
+        }
+    }
+}

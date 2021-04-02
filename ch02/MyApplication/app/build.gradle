@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         release {
-            keyAlias 'my_alias'
-            keyPassword 'password'
-            storeFile file('/Users/kousen/keystores/myapp.keystore')
-            storePassword 'password'
+            keyAlias "${project.ext.keyAlias}"
+            keyPassword "${project.ext.keyPassword}"
+            storeFile file("${project.ext.storeFile}")
+            storePassword "${project.ext.storePassword}"
         }
     }
 
@@ -36,17 +36,21 @@ ext {
     if (!project.hasProperty('pass')) {
         pass = 'pass_from_build_file'
     }
+    if (!project.hasProperty("date")) {
+        date = '20201122'
+    }
 }
 
 task printProperties() {
     doLast {
         println "username=$user"
         println "password=$pass"
+        println "date=$date"
     }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = 2.14
+    gradleVersion = "5.6.4"
 }
 
 dependencies {
