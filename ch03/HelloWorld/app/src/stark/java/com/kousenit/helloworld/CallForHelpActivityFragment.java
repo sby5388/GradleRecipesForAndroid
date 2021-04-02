@@ -17,6 +17,10 @@ import java.util.Map;
 
 public class CallForHelpActivityFragment extends ListFragment {
 
+    public CallForHelpActivityFragment(){
+        super();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
@@ -35,16 +39,21 @@ public class CallForHelpActivityFragment extends ListFragment {
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), list,
                 android.R.layout.simple_list_item_2, columns, resources);
-        adapter.setViewBinder(new SimpleAdapter.ViewBinder() {
-                                  public boolean setViewValue(View view, Object data, String textRepresentation) {
-                                      if (data instanceof Spanned && view instanceof TextView) {
-                                          ((TextView) view).setText((Spanned) data);
-                                      } else {
-                                          ((TextView) view).setText(String.valueOf(data));
-                                      }
-                                      return true;
-                                  }
-                              }
+        adapter.setViewBinder(
+                new SimpleAdapter.ViewBinder() {
+                    @Override
+                    public boolean setViewValue(View view, Object data, String textRepresentation) {
+                        if (view instanceof TextView) {
+                            if (data instanceof Spanned) {
+                                ((TextView) view).setText((Spanned) data);
+                            } else {
+                                ((TextView) view).setText(String.valueOf(data));
+                            }
+                        }
+                        return true;
+                    }
+
+                }
         );
 
         setListAdapter(adapter);
