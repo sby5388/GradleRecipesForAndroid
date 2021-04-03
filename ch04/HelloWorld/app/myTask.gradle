@@ -1,0 +1,7 @@
+task printVariantNames() {
+    doLast {
+        android.applicationVariants.all { varient ->
+            println(varient.name)
+        }
+    }
+}
