@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_joke"
-        app:showAsAction="ifRoom|withText"
         android:icon="@android:drawable/ic_media_play"
-        android:title="@string/get_joke"/>
+        android:title="@string/get_joke"
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/preferences"
-        app:showAsAction="never"
         android:title="@string/settings"
-        />
+        app:showAsAction="never" />
 </menu>

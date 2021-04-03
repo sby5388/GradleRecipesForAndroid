@@ -1,1 +1,2 @@
 include ':app', ':icndb'
+rootProject.name = "ch04 HelloWorldICNDB"

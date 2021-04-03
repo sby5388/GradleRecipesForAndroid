@@ -16,13 +16,6 @@ public class JokeFinder {
     private Retrofit retrofit;
     private AsyncTask<String, Void, String> task;
 
-    interface ICNDB {
-        @GET("/jokes/random")
-        Call<IcndbJoke> getJoke(@Query("firstName") String firstName,
-                                @Query("lastName") String lastName,
-                                @Query("limitTo") String limitTo);
-    }
-
     public JokeFinder() {
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.icndb.com")
@@ -50,5 +43,12 @@ public class JokeFinder {
                 System.out.println(call.request().url() + " failed: " + t);
             }
         });
+    }
+
+    interface ICNDB {
+        @GET("/jokes/random")
+        Call<IcndbJoke> getJoke(@Query("firstName") String firstName,
+                                @Query("lastName") String lastName,
+                                @Query("limitTo") String limitTo);
     }
 }
